@@ -8,6 +8,7 @@ const GlassCard = styled(Card)(({ theme }) => ({
   borderRadius: '24px',
   transition: 'all 0.3s ease',
   cursor: 'pointer',
+  boxShadow: `0 4px 20px ${theme.palette.common.black}20`,
   '&:hover': {
     transform: 'translateY(-8px)',
     background: 'rgba(255, 255, 255, 0.08)',
@@ -21,16 +22,20 @@ const PlanetImage = styled('img')(({ theme }) => ({
   height: '80px',
   borderRadius: '50%',
   objectFit: 'cover',
-  border: '2px solid rgba(255, 255, 255, 0.2)',
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+  border: `2px solid ${theme.palette.common.white}20`,
+  boxShadow: `0 8px 32px ${theme.palette.common.black}50`,
+  transition: 'transform 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.1)'
+  }
 }));
 
 const SpecItem = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '8px 0',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  padding: theme.spacing(1, 0),
+  borderBottom: `1px solid ${theme.palette.common.white}10`,
   '&:last-child': {
     borderBottom: 'none'
   }

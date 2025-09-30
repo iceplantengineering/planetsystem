@@ -25,10 +25,12 @@ const EducationCard = styled(Card)(({ theme }) => ({
   border: '1px solid rgba(255, 255, 255, 0.1)',
   borderRadius: '20px',
   transition: 'all 0.3s ease',
+  boxShadow: `0 4px 20px ${theme.palette.common.black}20`,
   '&:hover': {
     transform: 'translateY(-5px)',
     background: 'rgba(255, 255, 255, 0.05)',
-    border: '1px solid rgba(255, 255, 255, 0.2)'
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    boxShadow: `0 8px 30px ${theme.palette.common.black}30`
   }
 }));
 

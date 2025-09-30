@@ -36,7 +36,8 @@ const ContentWrapper = styled(Stack)(({ theme }) => ({
   zIndex: 1,
   maxWidth: '1200px',
   width: '100%',
-  textAlign: 'center'
+  textAlign: 'center',
+  padding: theme.spacing(4)
 }));
 
 const GlowText = styled(Typography)(({ theme }) => ({

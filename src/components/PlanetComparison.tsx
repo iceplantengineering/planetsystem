@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Typography, Stack, Button, Card, CardContent, Slider } from '@mui/material';
+import { Box, Typography, Stack, Button, Card, CardContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import BalanceOutlinedIcon from '@mui/icons-material/BalanceOutlined';
 
@@ -25,7 +25,13 @@ const ComparisonCard = styled(Card)(({ theme }) => ({
   backdropFilter: 'blur(20px)',
   border: '1px solid rgba(255, 255, 255, 0.1)',
   borderRadius: '20px',
-  height: '100%'
+  height: '100%',
+  boxShadow: `0 4px 20px ${theme.palette.common.black}20`,
+  transition: 'transform 0.3s ease',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: `0 8px 30px ${theme.palette.common.black}30`
+  }
 }));
 
 const PlanetSelector = styled(Button)<{ isSelected: boolean }>(({ theme, isSelected }) => ({
@@ -71,7 +77,6 @@ const planets = Object.keys(planetData);
 export default function PlanetComparison() {
   const [planet1, setPlanet1] = useState('Earth');
   const [planet2, setPlanet2] = useState('Mars');
-  const [comparisonMetric, setComparisonMetric] = useState('diameter');
 
   const data1 = planetData[planet1 as keyof typeof planetData];
   const data2 = planetData[planet2 as keyof typeof planetData];
