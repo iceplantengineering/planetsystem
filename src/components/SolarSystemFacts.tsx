@@ -23,15 +23,16 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 const FactCard = styled(Card)(({ theme }) => ({
   background: 'rgba(255, 255, 255, 0.04)',
   backdropFilter: 'blur(20px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  border: `1px solid ${theme.palette.common.white}10`,
   borderRadius: '24px',
   transition: 'all 0.3s ease',
   height: '100%',
+  boxShadow: `0 4px 20px ${theme.palette.common.black}20`,
   '&:hover': {
     transform: 'translateY(-8px) scale(1.02)',
     background: 'rgba(255, 255, 255, 0.06)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
-    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+    border: `1px solid ${theme.palette.common.white}20`,
+    boxShadow: `0 20px 40px ${theme.palette.common.black}40`
   }
 }));
 
