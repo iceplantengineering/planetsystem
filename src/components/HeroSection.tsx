@@ -1,6 +1,9 @@
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SolarSystemVisualization from './SolarSystemVisualization';
+import CSS3DSolarSystem from './CSS3DSolarSystem';
+import HeroHeader from './HeroHeader';
+import { useState } from 'react';
 
 const HeroContainer = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
@@ -13,9 +16,7 @@ const HeroContainer = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: theme.spacing(4),
+  padding: 0,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -40,47 +41,38 @@ const ContentWrapper = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(4)
 }));
 
-const GlowText = styled(Typography)(({ theme }) => ({
-  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main}, ${theme.palette.warning.main})`,
-  backgroundClip: 'text',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  textShadow: `0 0 30px ${theme.palette.primary.main}40`,
-  marginBottom: theme.spacing(2)
-}));
-
 interface HeroSectionProps {
   onPlanetClick: (planet: string) => void;
 }
 
 export default function HeroSection({ onPlanetClick }: HeroSectionProps) {
+  const [viewMode, setViewMode] = useState<'2d' | 'css3d'>('css3d');
+
+  const handleViewChange = (mode: '2d' | 'css3d') => {
+    setViewMode(mode);
+  };
+
+  const renderContent = () => {
+    switch (viewMode) {
+      case '2d':
+        return (
+          <ContentWrapper>
+            <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', padding: 4 }}>
+              <SolarSystemVisualization onPlanetClick={onPlanetClick} />
+            </Box>
+          </ContentWrapper>
+        );
+      case 'css3d':
+        return <CSS3DSolarSystem onPlanetClick={onPlanetClick} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <HeroContainer>
-      <ContentWrapper spacing={6}>
-        <Stack spacing={3} alignItems="center">
-          <GlowText variant="h1">
-            太陽系の神秘
-          </GlowText>
-          <Typography 
-            variant="h3" 
-            color="text.secondary" 
-            sx={{ maxWidth: '800px', lineHeight: 1.6 }}
-          >
-            惑星の軌道運動と天体の諸元を探索する
-          </Typography>
-          <Typography 
-            variant="body1" 
-            color="text.secondary" 
-            sx={{ maxWidth: '600px', opacity: 0.8 }}
-          >
-            インタラクティブな太陽系シミュレーションで、各惑星の特性と軌道の美しさを体験してください
-          </Typography>
-        </Stack>
-
-        <Box sx={{ width: '100%', maxWidth: '900px' }}>
-          <SolarSystemVisualization onPlanetClick={onPlanetClick} />
-        </Box>
-      </ContentWrapper>
+      <HeroHeader viewMode={viewMode} onViewChange={handleViewChange} />
+      {renderContent()}
     </HeroContainer>
   );
 }
