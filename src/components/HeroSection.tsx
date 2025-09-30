@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SolarSystemVisualization from './SolarSystemVisualization';
 import CSS3DSolarSystem from './CSS3DSolarSystem';
@@ -32,14 +32,6 @@ const HeroContainer = styled(Box)(({ theme }) => ({
   }
 }));
 
-const ContentWrapper = styled(Stack)(({ theme }) => ({
-  position: 'relative',
-  zIndex: 1,
-  maxWidth: '1200px',
-  width: '100%',
-  textAlign: 'center',
-  padding: theme.spacing(4)
-}));
 
 interface HeroSectionProps {
   onPlanetClick: (planet: string) => void;
