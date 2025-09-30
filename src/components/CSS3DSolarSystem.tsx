@@ -96,12 +96,12 @@ const Planet3D = styled(Box)<{
   isHovered: boolean;
   rotationSpeed: number;
 }>(({ planetSize, color, orbitRadius, isHovered, rotationSpeed }) => {
-  const planetOrbitAnimation = keyframes`
+  const planetSelfRotation = keyframes`
     from {
-      transform: translate(-50%, -50%) rotateX(-60deg) rotateY(0deg);
+      transform: rotateY(0deg);
     }
     to {
-      transform: translate(-50%, -50%) rotateX(-60deg) rotateY(360deg);
+      transform: rotateY(360deg);
     }
   `;
 
@@ -120,14 +120,14 @@ const Planet3D = styled(Box)<{
       inset 5px 5px 10px rgba(255,255,255,0.2)
     `,
     top: '50%',
-    left: `${orbitRadius}px`,
-    transform: `translate(-50%, -50%) rotateX(-60deg)`,
+    left: '50%',
+    transform: `translate(-50%, -50%) translateX(${orbitRadius}px)`,
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     transformStyle: 'preserve-3d',
-    animation: `${planetOrbitAnimation} ${rotationSpeed}s linear infinite`,
+    animation: `${planetSelfRotation} ${rotationSpeed}s linear infinite`,
     ...(isHovered && {
-      transform: `translate(-50%, -50%) rotateX(-60deg) scale(1.5)`,
+      transform: `translate(-50%, -50%) translateX(${orbitRadius}px) scale(1.5)`,
       boxShadow: `
         0 0 40px ${color}80,
         inset -5px -5px 10px rgba(0,0,0,0.4),

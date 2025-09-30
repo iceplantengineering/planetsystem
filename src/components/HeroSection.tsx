@@ -56,11 +56,16 @@ export default function HeroSection({ onPlanetClick }: HeroSectionProps) {
     switch (viewMode) {
       case '2d':
         return (
-          <ContentWrapper>
-            <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', padding: 4 }}>
-              <SolarSystemVisualization onPlanetClick={onPlanetClick} />
-            </Box>
-          </ContentWrapper>
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '100vh',
+            position: 'relative',
+            zIndex: 1
+          }}>
+            <SolarSystemVisualization onPlanetClick={onPlanetClick} />
+          </Box>
         );
       case 'css3d':
         return <CSS3DSolarSystem onPlanetClick={onPlanetClick} />;
